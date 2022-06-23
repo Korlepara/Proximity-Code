@@ -1,0 +1,28 @@
+@IsTest
+public class ContactTriggerHandler_Test {
+    static testMethod void testCC () {
+        //create account
+        Account acc = new Account();
+        acc.Name = 'Test Account';
+        insert acc;
+        //create Contact1
+        contact con = new contact();
+        con.LastName = 'Test contact';
+        con.AccountId=acc.id;
+        con.Level__c = 'Primary';
+        insert con;
+        contact con1 = new contact();
+        con1.LastName = 'Test contact';
+        con1.AccountId=acc.id;
+        con1.Level__c = 'Secondary';
+        insert con1;
+        contact con2 = new contact();
+        con2.LastName = 'Test contact';
+        con2.AccountId=acc.id;
+        con2.Level__c = 'Tertiary';
+        insert con2;
+    }
+}
+
+
+  

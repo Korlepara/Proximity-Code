@@ -1,0 +1,30 @@
+public class ContactTriggerHandler {
+    public static void handleAfterInsert(List<Contact> ContactList){
+        List<Case> caseList = new List<Case>();
+        for (Contact con : ContactList) {
+            case c = new case();
+            c.Status='Working';
+            c.Origin='New Contact';
+            c.Subject='test case';
+            if(String.ValueOf(con.AccountId) != null && String.ValueOf(con.AccountId) != ''){//checking contact has associated account or not
+                c.AccountId=String.ValueOf(con.AccountId);
+            }
+            if(con.Level__c == 'Primary'){
+                c.Priority = 'High';
+            }
+            else if(con.Level__c == 'Secondary'){
+                c.Priority = 'Medium';
+            }
+            else if(con.Level__c == 'Tertiary'){
+                c.Priority = 'Low';
+            }
+            c.ContactId=con.Id;
+            caseList.add(c);
+        }
+        if(caseList.size() > 0) {
+            database.insert(caseList,false) ;
+            system.debug('Case List'+CaseList);
+        }
+        
+    }
+}
